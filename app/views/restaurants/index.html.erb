@@ -1,17 +1,24 @@
-<div class="container">
-  <h1>All Restaurants</h1>
-  <div class="cards">
+<div class="container my-5">
+  <h1 class="mb-4 text-center">All Restaurants</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @restaurants.each do |restaurant| %>
-      <div class="card-product">
-        <%# <%= image_tag "", alt: "text" %>
-        <div class="card-product-infos">
-          <h2><%= link_to restaurant.name, restaurant_path(restaurant), class: 'text-decoration-none text-black' %></h2>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <%= image_tag "Unknown.jpeg", class: "card-img-top", alt: restaurant.name %>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">
+              <%= link_to restaurant.name, restaurant_path(restaurant), class: "stretched-link text-decoration-none text-dark" %>
+            </h5>
+          </div>
         </div>
       </div>
     <% end %>
-    <div class="cards">
-      <div class="card-product">
-        <%= link_to 'Create New Restaurant', new_restaurant_path, class: "btn btn-dark py-5 px-5"  %>
+    <div class="col">
+      <div class="card h-100 border-dashed text-center d-flex align-items-center justify-content-center">
+        <%= link_to new_restaurant_path, class: "text-decoration-none text-muted" do %>
+          <i class="fa-solid fa-plus fa-2x mb-2"></i>
+          <div>Create New Restaurant</div>
+        <% end %>
       </div>
     </div>
   </div>

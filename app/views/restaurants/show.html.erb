@@ -1,22 +1,70 @@
-<div class="container">
-  <div class="card">
+<div class="container my-5">
+  <div class="card mb-4 shadow-sm">
+    <%= image_tag "Unknown2.jpeg", class: "card-img-top", alt: @restaurant.name %>
     <div class="card-body">
-      <h5><%= @restaurant.name %></h5>
-      <p><%= @restaurant.address %></p>
-      <p><%= @restaurant.phone_number %></p>
-      <p><%= @restaurant.category %></p>
-      <p><strong>Reviews</strong></p>
-      <ul class="list-group">
+      <h3 class="card-title"><%= @restaurant.name %></h3>
+      <p class="card-text mb-1">
+        <i class="fa-solid fa-location-dot me-2"></i>
+        <%= @restaurant.address %>
+      </p>
+      <p class="card-text mb-1">
+        <i class="fa-solid fa-phone me-2"></i>
+        <%= @restaurant.phone_number %>
+      </p>
+      <p>
+        <span class="badge bg-secondary">
+          <%= @restaurant.category %>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="mb-4">
+    <h4>Reviews</h4>
+    <% if @restaurant.reviews.any? %>
+      <ul class="list-group mb-3">
         <% @restaurant.reviews.each do |review| %>
-          <p><%= review.content %></p>
-          <p><%= review.rating %></p>
+          <li class="list-group-item">
+            <p class="mb-1"><%= review.content %></p>
+            <small class="text-muted">
+              Rating: <%= review.rating %> ★
+            </small>
+          </li>
         <% end %>
       </ul>
-      <%= link_to 'Add a Review!', new_restaurant_review_path(@restaurant), class: 'btn btn-light'  %>
-    </p>
+    <% else %>
+      <p class="text-muted">No reviews yet.</p>
+    <% end %>
   </div>
-  <%= link_to restaurants_path, class: 'btn btn-success' do  %>
-    <i class="fa-solid fa-utensils"></i>
+  <div class="d-grid mb-3">
+    <%= link_to "Add a Review",
+                new_restaurant_review_path(@restaurant),
+                class: "btn btn-primary btn-lg" %>
+  </div>
+  <%= link_to restaurants_path, class: "btn btn-outline-secondary" do %>
+    <i class="fa-solid fa-arrow-left me-2"></i>
+    Back to all restaurants
   <% end %>
 </div>
-</div>
+<%# <div class="container">
+  <div class="card">
+    <div class="card-body"> %>
+<%#= image_tag "Unknown2.jpeg", alt: "restaurant" %>
+<h5><%#= @restaurant.name %></h5>
+<p><%#= @restaurant.address %></p>
+<p><%#= @restaurant.phone_number %></p>
+<p><%#= @restaurant.category %></p>
+<%# <p><strong>Reviews</strong></p>
+      <ul class="list-group"> %>
+<%# @restaurant.reviews.each do |review| %>
+  <p><%#= review.content %></p>
+  <p><%#= review.rating %></p>
+  <%# end %>
+</ul>
+<%#= link_to 'Add a Review!', new_restaurant_review_path(@restaurant), class: 'btn btn-light'  %>
+<#/p>
+  <%# </div> %>
+  <%#= link_to restaurants_path, class: 'btn btn-primary mt-3' do  %>
+    <%# <i class="fa-solid fa-utensils"></i> %>
+    <%# end %>
+    <%# </div>
+</div> %>
