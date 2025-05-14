@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5><%= @restaurant.name %></h5>
+      <p><%= @restaurant.address %></p>
+      <p><%= @restaurant.phone_number %></p>
+      <p><%= @restaurant.category %></p>
+      <p><strong>Reviews</strong></p>
+      <ul class="list-group">
+        <% @restaurant.reviews.each do |review| %>
+          <p><%= review.content %></p>
+          <p><%= review.rating %></p>
+        <% end %>
+      </ul>
+      <%= link_to 'Add a Review!', new_restaurant_review_path(@restaurant), class: 'btn btn-light'  %>
+    </p>
+  </div>
+  <%= link_to restaurants_path, class: 'btn btn-success' do  %>
+    <i class="fa-solid fa-utensils"></i>
+  <% end %>
+</div>
+</div>
